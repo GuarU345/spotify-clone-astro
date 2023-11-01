@@ -1,0 +1,23 @@
+---
+import { getAlbums } from "../services/albums";
+const albums = await getAlbums();
+---
+
+<section class="p-2 text-white flex flex-col">
+  <h1 class="text-xl">Buenos dias</h1>
+  <ul class="flex gap-4">
+    {
+      albums.map((album) => (
+        <li class="flex flex-col justify-center bg-zinc-800 p-2">
+          <picture>
+            <img class="w-36 h-36" src={album.album_image} alt={album.name} />
+          </picture>
+          <div>
+            <p class="text-base">{album.name}</p>
+            <span>{album.artist.name}</span>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</section>

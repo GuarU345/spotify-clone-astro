@@ -1,0 +1,25 @@
+---
+import { getAlbums } from "../services/albums";
+
+const albums = await getAlbums();
+---
+
+<ul class="flex flex-col gap-2">
+  {
+    albums.map((album) => (
+      <li class="flex items-center  p-2 gap-2 hover:cursor-pointer">
+        <picture>
+          <img
+            class="w-16 h-16 rounded-md"
+            src={album.album_image}
+            alt={album.name}
+          />
+        </picture>
+        <div class="flex flex-col text-white">
+          <p class="text-sm font-semibold">{album.name}</p>
+          <span class="text-xs text-gray-400">{album.artist.name}</span>
+        </div>
+      </li>
+    ))
+  }
+</ul>
