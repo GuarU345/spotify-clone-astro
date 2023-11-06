@@ -3,18 +3,22 @@ import { getAlbums } from "../services/albums";
 const albums = await getAlbums();
 ---
 
-<section class="p-2 text-white flex flex-col">
+<section class="p-2 text-white flex flex-col gap-2">
   <h1 class="text-xl">Buenos dias</h1>
-  <ul class="flex gap-4">
+  <ul class="flex flex-wrap gap-4">
     {
-      albums.map((album) => (
-        <li class="flex flex-col justify-center bg-zinc-800 p-2">
+      albums?.map((album) => (
+        <li class="flex flex-col rounded-md bg-zinc-800 p-4 w-42">
           <picture>
-            <img class="w-36 h-36" src={album.album_image} alt={album.name} />
+            <img
+              class="w-36 h-36 rounded-md"
+              src={album.album_image}
+              alt={album.name}
+            />
           </picture>
-          <div>
-            <p class="text-base">{album.name}</p>
-            <span>{album.artist.name}</span>
+          <div class="mt-2 flex flex-col gap-1">
+            <p class="text-sm font-semibold">{album.name}</p>
+            <span class="text-xs text-gray-300 mb-6">{album.artist.name}</span>
           </div>
         </li>
       ))
