@@ -1,0 +1,32 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SongsTable from "../components/SongsTable.astro";
+import { getAlbumById } from "../services/albums";
+const { id } = Astro.params;
+const album = await getAlbumById(id);
+---
+
+<Layout title="Section of album">
+  <section class="flex flex-col px-6 gap-4 text-white rounded-sm">
+    <div class="flex items-center gap-4">
+      <img
+        class="w-56 h-56 mt-20"
+        src={album.image}
+        alt={album.name}
+        transition:name={`${album.image}`}
+      />
+      <div class="flex flex-col mt-10 gap-2">
+        <p>{album.type}</p>
+        <p class="text-6xl font-bold" transition:name={`${album.name}`}>
+          {album.name}
+        </p>
+        <p class="text-sm" transition:name={`${album.artist}`}>
+          {album.artist}
+        </p>
+      </div>
+    </div>
+    <section>
+      <SongsTable songs={album.songs} artist={album.artist} />
+    </section>
+  </section>
+</Layout>

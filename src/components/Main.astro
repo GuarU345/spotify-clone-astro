@@ -3,24 +3,37 @@ import { getAlbums } from "../services/albums";
 const albums = await getAlbums();
 ---
 
-<section class="p-2 text-white flex flex-col gap-2">
-  <h1 class="text-xl">Buenos dias</h1>
+<section class="p-2 text-white flex flex-col gap-4">
+  <h1 class="text-xl mt-4">Buenos dias</h1>
   <ul class="flex flex-wrap gap-4">
     {
       albums?.map((album) => (
-        <li class="flex flex-col rounded-md bg-zinc-800 p-4 w-42">
-          <picture>
-            <img
-              class="w-36 h-36 rounded-md"
-              src={album.album_image}
-              alt={album.name}
-            />
-          </picture>
-          <div class="mt-2 flex flex-col gap-1">
-            <p class="text-sm font-semibold">{album.name}</p>
-            <span class="text-xs text-gray-300 mb-6">{album.artist.name}</span>
-          </div>
-        </li>
+        <a href={`/${album.id}`}>
+          <li class="flex flex-col rounded-md bg-zinc-800 p-4 w-42 hover:cursor-pointer">
+            <picture>
+              <img
+                class="w-36 h-36 rounded-md"
+                src={album.album_image}
+                alt={album.name}
+                transition:name={`${album.album_image}`}
+              />
+            </picture>
+            <div class="mt-2 flex flex-col gap-1">
+              <p
+                class="text-sm font-semibold"
+                transition:name={`${album.name}`}
+              >
+                {album.name}
+              </p>
+              <span
+                class="text-xs text-gray-300 mb-6"
+                transition:name={`${album.artist.name}`}
+              >
+                {album.artist.name}
+              </span>
+            </div>
+          </li>
+        </a>
       ))
     }
   </ul>
