@@ -1,9 +1,6 @@
 ---
 import { getSongById } from "../services/songs";
-import { usePlayerStore } from "../store/usePlayerStore";
-const { currentSong } = usePlayerStore();
-let song = await getSongById(currentSong);
-currentSong ? song : [];
+let song = await getSongById(1);
 ---
 
 <main class="flex justify-between">

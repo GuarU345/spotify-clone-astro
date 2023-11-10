@@ -1,12 +1,6 @@
 ---
 import { getAlbums } from "../services/albums";
-import { usePlayerStore } from "../store/usePlayerStore";
-const { setCurrentSong } = usePlayerStore();
 const albums = await getAlbums();
-
-const selectSong = (songId) => {
-  setCurrentSong(songId);
-};
 ---
 
 <section class="p-2 text-white flex flex-col gap-4">

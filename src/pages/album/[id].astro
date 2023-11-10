@@ -1,7 +1,7 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import SongsTable from "../components/SongsTable.astro";
-import { getAlbumById } from "../services/albums";
+import Layout from "../../layouts/Layout.astro";
+import SongsTable from "../../components/SongsTable.astro";
+import { getAlbumById } from "../../services/albums";
 const { id } = Astro.params;
 const album = await getAlbumById(id);
 ---
