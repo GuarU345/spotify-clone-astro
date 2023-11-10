@@ -1,6 +1,12 @@
 ---
 import { getAlbums } from "../services/albums";
+import { usePlayerStore } from "../store/usePlayerStore";
+const { setCurrentSong } = usePlayerStore();
 const albums = await getAlbums();
+
+const selectSong = (songId) => {
+  setCurrentSong(songId);
+};
 ---
 
 <section class="p-2 text-white flex flex-col gap-4">
@@ -12,7 +18,7 @@ const albums = await getAlbums();
           <li class="flex flex-col rounded-md bg-zinc-800 p-4 w-42 hover:cursor-pointer">
             <picture>
               <img
-                class="w-36 h-36 rounded-md"
+                class="w-36 h-36 rounded-md hover:scale-105"
                 src={album.album_image}
                 alt={album.name}
                 transition:name={`${album.album_image}`}
@@ -25,12 +31,10 @@ const albums = await getAlbums();
               >
                 {album.name}
               </p>
-              <span
-                class="text-xs text-gray-300 mb-6"
-                transition:name={`${album.artist.name}`}
-              >
+              <a class="hover:underline text-xs text-gray-300 mb-6">
+                <span transition:name={`${album.id}/${album.artist.name}`} />
                 {album.artist.name}
-              </span>
+              </a>
             </div>
           </li>
         </a>

@@ -6,11 +6,11 @@ const { id } = Astro.params;
 const album = await getAlbumById(id);
 ---
 
-<Layout title="Section of album">
+<Layout title={`${album.name} - ${album.type} de ${album.artist}`}>
   <section class="flex flex-col px-6 gap-4 text-white rounded-sm">
     <div class="flex items-center gap-4">
       <img
-        class="w-56 h-56 mt-20"
+        class="w-56 h-56 mt-20 hover:cursor-pointer hover:scale-105"
         src={album.image}
         alt={album.name}
         transition:name={`${album.image}`}
@@ -20,7 +20,7 @@ const album = await getAlbumById(id);
         <p class="text-6xl font-bold" transition:name={`${album.name}`}>
           {album.name}
         </p>
-        <p class="text-sm" transition:name={`${album.artist}`}>
+        <p class="text-sm" transition:name={`${album.id}/${album.artist}`}>
           {album.artist}
         </p>
       </div>
