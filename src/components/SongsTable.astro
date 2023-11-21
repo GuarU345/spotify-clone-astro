@@ -1,5 +1,5 @@
 ---
-import { BsHeartFill } from "react-icons/bs";
+import { BsHeartFill,BsHeart } from "react-icons/bs";
 const { songs, artist, likeds } = Astro.props;
 
 const newSongs = songs.map((song) => {
@@ -30,7 +30,7 @@ const newSongs = songs.map((song) => {
               <p>{artist}</p>
             </div>
             <span class={`${song.liked ? "text-green-500" : "d-none"} text-lg`}>
-              {song.liked ? <BsHeartFill /> : null}
+              {song.liked ? <BsHeartFill /> : <BsHeart />}
             </span>
           </td>
           <td class="px-4 py-2">{song.duration}</td>
