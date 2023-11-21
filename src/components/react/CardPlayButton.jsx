@@ -1,8 +1,10 @@
 import { BsPauseFill, BsPlayFill } from "react-icons/bs";
 import { usePlayerStore } from "../../store/usePlayerStore";
-import { API_URL } from "../../utils/helpers";
+import { getSongsByAlbumId } from "src/services/songs";
+import { useState } from "react";
 
 const CardPlayButton = ({ id }) => {
+  const [selectedAlbum, setSelectedAlbum] = useState(id);
   const {
     currentMusic,
     isPlaying,
@@ -13,34 +15,26 @@ const CardPlayButton = ({ id }) => {
   } = usePlayerStore();
   const isPlayingAlbum = isPlaying && currentMusic?.album.id === id;
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (isPlayingAlbum) {
       setIsPlaying(false);
       return;
     }
 
-    fetch(`${API_URL}/albums/${id}/songs`, {
-      headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjM5ZGUyZThlLTRjYjQtNGQyNi1hMjBhLTU0YjFkNDIzYWRkNSIsImVtYWlsIjoiZ3VhcnVAZ21haWwuY29tIiwiaWF0IjoxNjk5MjQ2Nzc1fQ.Qce5869LNnTt_sdUghlPgdQQZg0RRLkBSnMq0BkK_Ow",
+    const data = await getSongsByAlbumId(selectedAlbum);
+    const { songs, id, image, artist, name } = data;
+    setIsPlaying(true);
+    setCurrentMusic({
+      songs,
+      album: {
+        id,
+        name,
+        image,
+        artist,
       },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        const { songs, id, image, artist, name } = data;
-        setIsPlaying(true);
-        setCurrentMusic({
-          songs,
-          album: {
-            id,
-            name,
-            image,
-            artist,
-          },
-        });
-        setCurrentSong(0);
-        playMusic();
-      });
+    });
+    setCurrentSong(0);
+    playMusic();
   };
 
   return (

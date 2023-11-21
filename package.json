@@ -17,6 +17,7 @@
     "@types/react-dom": "^18.2.12",
     "astro": "^3.2.4",
     "audio-encoder": "^1.0.4",
+    "axios": "^1.6.2",
     "clsx": "^2.0.0",
     "howler": "^2.2.4",
     "lamejs": "^1.2.1",

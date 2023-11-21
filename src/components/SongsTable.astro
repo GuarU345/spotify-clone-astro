@@ -1,5 +1,14 @@
 ---
-const { songs, artist } = Astro.props;
+import { BsHeartFill } from "react-icons/bs";
+const { songs, artist, likeds } = Astro.props;
+
+const newSongs = songs.map((song) => {
+  const isLiked = likeds.includes(song.id);
+  return {
+    ...song,
+    liked: isLiked,
+  };
+});
 ---
 
 <table class="table-auto min-w-full text-left divide-y divide-gray-100/50">
@@ -12,12 +21,17 @@ const { songs, artist } = Astro.props;
   </thead>
   <tbody>
     {
-      songs.map((song, index) => (
+      newSongs.map((song, index) => (
         <tr class="text-gray-300 text-sm hover:cursor-pointer hover:bg-white/10">
           <td class="px-4 py-2">{index + 1}</td>
-          <td class="px-4 py-2 flex flex-col">
-            {song.name}
-            <p>{artist}</p>
+          <td class="px-4 py-2 flex justify-between items-center">
+            <div class="flex flex-col">
+              {song.name}
+              <p>{artist}</p>
+            </div>
+            <span class={`${song.liked ? "text-green-500" : "d-none"} text-lg`}>
+              {song.liked ? <BsHeartFill /> : null}
+            </span>
           </td>
           <td class="px-4 py-2">{song.duration}</td>
         </tr>
