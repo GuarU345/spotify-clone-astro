@@ -1,38 +1,20 @@
 ---
 import { getAlbums } from "../services/albums";
+import MainAlbumCard from "./MainAlbumCard.astro";
 const albums = await getAlbums();
 ---
 
-<section class="p-2 text-white flex flex-col gap-4">
-  <h1 class="text-xl mt-4">Buenos dias</h1>
-  <ul class="flex flex-wrap gap-4">
-    {
-      albums?.map((album) => (
-        <a href={`/${album.id}`}>
-          <li class="flex flex-col rounded-md bg-zinc-800 p-4 w-42 hover:cursor-pointer">
-            <picture>
-              <img
-                class="w-36 h-36 rounded-md hover:scale-105"
-                src={album.album_image}
-                alt={album.name}
-                transition:name={`${album.album_image}`}
-              />
-            </picture>
-            <div class="mt-2 flex flex-col gap-1">
-              <p
-                class="text-sm font-semibold"
-                transition:name={`${album.name}`}
-              >
-                {album.name}
-              </p>
-              <a class="hover:underline text-xs text-gray-300 mb-6">
-                <span transition:name={`${album.id}/${album.artist.name}`} />
-                {album.artist.name}
-              </a>
-            </div>
-          </li>
-        </a>
-      ))
-    }
-  </ul>
-</section>
+<div id="playlist-container" class="relative">
+  <div class="relative z-10 px-6 pt-10">
+    <div class="flex flex-wrap mt-6 gap-4">
+      {albums.map((album) => <MainAlbumCard album={album} />)}
+    </div>
+
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/80 -z-[1]"
+    >
+    </div>
+  </div>
+
+  <style></style>
+</div>

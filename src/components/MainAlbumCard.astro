@@ -1,0 +1,45 @@
+---
+import CardPlayButton from "./react/CardPlayButton";
+const { album } = Astro.props;
+---
+
+<article class="group relative shadow-lg hover:bg-zinc-800 bg-zinc-500/30">
+  <div
+    class=`absolute right-4 bottom-20 translate-y-4
+    transition-all duration-500 opacity-0
+    group-hover:translate-y-0 group-hover:opacity-100
+    z-10
+  `
+  >
+    <CardPlayButton client:visible id={album.id} />
+  </div>
+  <a
+    class="transition-all duration-300 w-44 flex flex-col relative p-2 overflow-hidden gap-2 pb-6 rounded-md"
+    href={`/album/${album.id}`}
+    transition:name=`album ${album.id} box`
+  >
+    <picture class="aspect-square w-full h-auto flex-none">
+      <img
+        class="object-cover w-full h-full rounded-md"
+        src={album.album_image}
+        alt={album.name}
+        transition:name=`album ${album.id} image`
+      />
+    </picture>
+    <div class="flex flex-auto flex-col px-2">
+      <h4
+        class="text-white font-bold truncate text-sm"
+        transition:name=`album ${album.id} title`
+      >
+        {album.name}
+      </h4>
+
+      <p
+        class="text-xs text-gray-400 mb-6 hover:underline"
+        transition:name=`album ${album.id} artist`
+      >
+        {album.artist.name}
+      </p>
+    </div>
+  </a>
+</article>

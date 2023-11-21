@@ -4,29 +4,59 @@ import SongsTable from "../../components/SongsTable.astro";
 import { getAlbumById } from "../../services/albums";
 const { id } = Astro.params;
 const album = await getAlbumById(id);
+
+const numberSongs = album.songs.length;
 ---
 
 <Layout title={`${album.name} - ${album.type} de ${album.artist}`}>
-  <section class="flex flex-col px-6 gap-4 text-white rounded-sm">
-    <div class="flex items-center gap-4">
-      <img
-        class="w-56 h-56 mt-20 hover:cursor-pointer hover:scale-105"
-        src={album.image}
-        alt={album.name}
-        transition:name={`${album.image}`}
-      />
-      <div class="flex flex-col mt-10 gap-2">
-        <p>{album.type}</p>
-        <p class="text-6xl font-bold" transition:name={`${album.name}`}>
-          {album.name}
-        </p>
-        <p class="text-sm" transition:name={`${album.id}/${album.artist}`}>
-          {album.artist}
-        </p>
+  <div
+    id="playlist-container"
+    class="relative flex flex-col h-full bg-zinc-900 overflow-x-hidden"
+    transition:name=`album ${id} box`
+  >
+    <header class="flex flex-row gap-8 px-6 mt-12">
+      <picture class="aspect-square w-52 h-52 flex-none">
+        <img
+          src={album?.image}
+          alt={`Cover of ${album?.title}`}
+          class="object-cover w-full h-full shadow-lg hover:cursor-pointer hover:scale-105"
+          transition:name=`album ${album?.id} image`
+        />
+      </picture>
+
+      <div class="flex flex-col justify-between">
+        <h2 class="flex flex-1 items-end">{album.type}</h2>
+        <div>
+          <h1 class="text-5xl font-bold block text-white">
+            {album.name}
+            <span transition:name=`album ${album?.id} title`></span>
+          </h1>
+        </div>
+
+        <div class="flex-1 flex items-end">
+          <div class="text-sm text-gray-300 font-normal">
+            <div transition:name=`album ${album.id} artist`>
+              <span>{album.artist}</span>
+            </div>
+            <p class="mt-1">
+              <span class="text-white"
+                >{numberSongs}{numberSongs > 1 ? "canciones" : "cancion"}</span
+              >
+            </p>
+          </div>
+        </div>
       </div>
+    </header>
+
+    <div class="relative z-10 px-6 pt-10"></div>
+
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/80 -z-[1]"
+    >
     </div>
-    <section>
+
+    <section class="p-6">
       <SongsTable songs={album.songs} artist={album.artist} />
     </section>
-  </section>
+  </div>
 </Layout>
