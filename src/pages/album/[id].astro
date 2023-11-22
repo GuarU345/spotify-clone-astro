@@ -3,6 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import SongsTable from "../../components/SongsTable.astro";
 import { getAlbumById } from "../../services/albums";
 import { getUserLikedSongsByAlbum } from "src/services/songs";
+import AlbumImage from "@components/react/AlbumImage";
 const { id } = Astro.params;
 const album = await getAlbumById(id);
 const likedSongIds = await getUserLikedSongsByAlbum(album.songs);
@@ -17,15 +18,12 @@ const numberSongs = album.songs.length;
     transition:name=`album ${id} box`
   >
     <header class="flex flex-row gap-8 px-6 mt-12">
-      <picture class="aspect-square w-52 h-52 flex-none">
-        <img
-          src={album?.image}
-          alt={`Cover of ${album?.title}`}
-          class="object-cover w-full h-full shadow-lg hover:cursor-pointer hover:scale-105"
-          transition:name=`album ${album?.id} image`
-        />
-      </picture>
-
+      <AlbumImage
+        client:visible
+        id={album.id}
+        image={album.image}
+        title={album.title}
+      />
       <div class="flex flex-col justify-between">
         <h2 class="flex flex-1 items-end">{album.type}</h2>
         <div>
