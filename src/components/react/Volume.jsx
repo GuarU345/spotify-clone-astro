@@ -4,7 +4,7 @@ import { BsVolumeDown } from "react-icons/bs";
 import { Slider } from "./Slider";
 
 const Volume = () => {
-  const { songPlaying, changeVolume, volume, setVolume } = usePlayerStore();
+  const { sound, changeVolume, volume, setVolume } = usePlayerStore();
 
   const handleChange = (value) => {
     const newVolume = value / 100;
@@ -13,10 +13,10 @@ const Volume = () => {
   };
 
   useEffect(() => {
-    if (songPlaying !== null) {
-      setVolume(songPlaying.volume());
+    if (sound !== null) {
+      setVolume(sound.volume());
     }
-  }, [songPlaying]);
+  }, [sound]);
   return (
     <div className="flex items-center">
       <button type="button">

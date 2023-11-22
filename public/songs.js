@@ -19,4 +19,8 @@ export const STREAMSONGS = [
     name: "DUCKWORTH",
     track: "songs/DUCKWORTH.mp3",
   },
+  {
+    name: "In Your Eyes",
+    track: "songs/In-Your-Eyes.mp3",
+  },
 ];

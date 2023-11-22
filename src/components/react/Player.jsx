@@ -7,21 +7,14 @@ import CurrentAlbum from "@components/react/CurrentAlbum";
 import Volume from "./Volume";
 
 const Player = () => {
-  const {
-    isPlaying,
-    setIsPlaying,
-    goNextSong,
-    goPreviousSong,
-    songPlaying,
-    currentSong,
-    playMusic,
-  } = usePlayerStore();
+  const { isPlaying, setIsPlaying, goNextSong, goPreviousSong, sound } =
+    usePlayerStore();
 
   const handlePlay = () => {
     if (isPlaying) {
-      songPlaying.pause();
+      sound.pause();
     } else {
-      songPlaying.play();
+      sound.play();
     }
     setIsPlaying(!isPlaying);
   };

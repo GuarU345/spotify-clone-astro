@@ -1,8 +1,10 @@
 import { usePlayerStore } from "@store/usePlayerStore";
 import { Slider } from "@components/react/Slider";
+import { useEffect } from "react";
 
 const SongControl = () => {
-  const { duration, progress, songPlaying, setProgress } = usePlayerStore();
+  const { duration, progress, sound, setProgress, isPlaying, goNextSong } =
+    usePlayerStore();
 
   const formatTime = (time) => {
     if (time === "0:00") return time;
@@ -11,24 +13,47 @@ const SongControl = () => {
     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
   };
 
-  const handleChange = () => {
-    console.log(progress);
-    songPlaying.seek(progress);
-    setProgress(progress);
+  const handleSeek = (newProgress) => {
+    sound.seek(newProgress);
+    setProgress(newProgress);
   };
+
+  useEffect(() => {
+    const updateProgress = () => {
+      setProgress(sound.seek());
+      requestAnimationFrame(updateProgress);
+    };
+
+    if (isPlaying) {
+      updateProgress();
+    }
+
+    if (!isPlaying) {
+      cancelAnimationFrame(updateProgress);
+    }
+
+    if (sound) {
+      sound.on("stop", () => {
+        cancelAnimationFrame(updateProgress);
+      });
+    }
+
+    // return () => {
+    //   sound.unload();
+    //   cancelAnimationFrame(updateProgress);
+    // };
+  }, [sound, setProgress]);
 
   return (
     <div className="flex gap-4">
       <span className="text-gray-400">{formatTime(progress)}</span>
       <Slider
-        className="w-[400px]"
+        className="w-[400px] cursor-pointer"
         value={[progress]}
-        min="0"
-        max={duration}
+        min={0}
+        max={[duration]}
         type="range"
-        onValueChange={(value) => {
-          console.log(value);
-        }}
+        onValueChange={(value) => handleSeek(value)}
       />
       <span className="text-gray-400">{formatTime(duration)}</span>
     </div>
