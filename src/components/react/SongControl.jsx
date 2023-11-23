@@ -3,7 +3,7 @@ import { Slider } from "@components/react/Slider";
 import { useEffect } from "react";
 
 const SongControl = () => {
-  const { duration, progress, sound, setProgress, isPlaying, goNextSong } =
+  const { duration, progress, sound, setProgress, isPlaying } =
     usePlayerStore();
 
   const formatTime = (time) => {
