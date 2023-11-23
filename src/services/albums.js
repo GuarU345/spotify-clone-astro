@@ -1,7 +1,7 @@
-import { token, userId } from "src/utils/helpers";
+import { API_URL, token, userId } from "src/utils/helpers";
 
 export const getAlbums = async () => {
-  const res = await fetch("http://localhost:3000/api/albums", {
+  const res = await fetch(`${API_URL}/albums`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -11,7 +11,7 @@ export const getAlbums = async () => {
 };
 
 export const getLikedAlbums = async () => {
-  const res = await fetch(`http://localhost:3000/api/users/${userId}/albums`, {
+  const res = await fetch(`${API_URL}/users/${userId}/albums`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -21,7 +21,7 @@ export const getLikedAlbums = async () => {
 };
 
 export const getAlbumById = async (albumId) => {
-  const res = await fetch(`http://localhost:3000/api/albums/${albumId}/songs`, {
+  const res = await fetch(`${API_URL}/albums/${albumId}/songs`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

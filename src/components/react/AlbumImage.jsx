@@ -6,7 +6,7 @@ const ModalAlbumImage = ({ image, handleClose }) => {
     <Modal>
       <picture>
         <img
-          className="w-[600px] h-[600px] rounded-lg object-cover animate-fade-up"
+          className="w-[600px] h-[600px] rounded-lg object-cover lg:w-[400px] lg:h-[400px]"
           src={image}
           alt="zoom of image"
         />
