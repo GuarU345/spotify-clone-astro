@@ -1,5 +1,5 @@
 ---
-import { BsHeartFill, BsHeart } from "react-icons/bs";
+import Like from "./react/Like";
 const { songs, artist, likeds } = Astro.props;
 
 const newSongs = songs.map((song) => {
@@ -29,9 +29,7 @@ const newSongs = songs.map((song) => {
               <span class="font-bold">{song.name}</span>
               <p class="text-gray-400">{artist}</p>
             </div>
-            <span class={`${song.liked ? "text-green-500" : "d-none"} text-lg`}>
-              {song.liked ? <BsHeartFill /> : <BsHeart />}
-            </span>
+            <Like client:visible liked={song.liked} songId={song.id} />
           </td>
           <td class="px-4 py-2">{song.duration}</td>
         </tr>
