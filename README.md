@@ -1,5 +1,3 @@
 # Clon de Spotify
 
-Este repositorio contiene un clon del popular servicio de musica construido en Astro,
-ofrece funciones como reproducir tu musica controlando el volumen y el progreso de
-la cancion, ver los albumes de musica, dar like a las canciones que te gustan, etc
+¡Bienvenido al Clon de Spotify construido en Astro! Este proyecto es un intento de replicar las funcionalidades del popular servicio de música Spotify. A través de esta aplicación, los usuarios pueden disfrutar de diversas funciones, que van desde la reproducción de música hasta la gestión de listas de reproducción y la exploración de álbumes. Este clon se ha desarrollado utilizando Astro, lo que proporciona una experiencia de usuario suave y receptiva.
