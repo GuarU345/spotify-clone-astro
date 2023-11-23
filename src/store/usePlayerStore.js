@@ -12,7 +12,16 @@ export const usePlayerStore = create((set, get) => ({
   currentSong: 0,
   setIsPlaying: (isPlaying) => set({ isPlaying }),
   setVolume: (volume) => set({ volume }),
-  setCurrentMusic: (currentMusic) => set({ currentMusic }),
+  setCurrentMusic: (currentMusic) => {
+    if (currentMusic.album !== get().currentMusic.album) {
+      const { sound } = get();
+      if (sound) {
+        sound.stop();
+        set({ duration: "0:00", progress: "0:00" });
+      }
+    }
+    set({ currentMusic });
+  },
   setCurrentSong: (currentSong) => set({ currentSong }),
   setProgress: (progress) => set({ progress }),
   playMusic: async () => {
