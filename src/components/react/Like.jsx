@@ -1,17 +1,21 @@
+import { useState } from "react";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { dislikeSong, likeSong } from "src/services/user_actions";
 
 const Like = ({ liked, songId }) => {
+  const [isLiked, setIsLiked] = useState(liked);
   const handleLike = async () => {
     if (liked === false) {
       try {
         await likeSong(songId);
+        setIsLiked(true);
       } catch (error) {
         console.error(error);
       }
     } else {
       try {
-        dislike = await dislikeSong(songId);
+        await dislikeSong(songId);
+        setIsLiked(false);
       } catch (error) {
         console.error(error);
       }
@@ -22,9 +26,9 @@ const Like = ({ liked, songId }) => {
     <>
       <button
         onClick={handleLike}
-        className={`${liked ? "text-green-500" : "d-none"} text-lg`}
+        className={`${isLiked ? "text-green-500" : "d-none"} text-lg`}
       >
-        {liked ? <BsHeartFill /> : <BsHeart />}
+        {isLiked ? <BsHeartFill /> : <BsHeart />}
       </button>
     </>
   );
