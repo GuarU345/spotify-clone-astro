@@ -35,17 +35,17 @@ const Player = () => {
         <section className="flex gap-4 items-center">
           <button
             onClick={handlePreviousSong}
-            className="text-3xl text-gray-300"
+            className="text-3xl text-gray-400"
           >
             <MdSkipPrevious />
           </button>
           <button
             onClick={handlePlay}
-            className="rounded-full bg-white p-2 text-xl text-black"
+            className="rounded-full p-1 bg-white text-2xl text-black hover:scale-105"
           >
             {isPlaying ? <BsPauseFill /> : <BsPlayFill />}
           </button>
-          <button onClick={handleNextSong} className="text-3xl text-gray-300">
+          <button onClick={handleNextSong} className="text-3xl text-gray-400">
             <MdSkipNext />
           </button>
         </section>

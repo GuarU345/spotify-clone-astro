@@ -20,7 +20,7 @@ const Volume = () => {
   return (
     <div className="flex items-center">
       <button type="button">
-        <BsVolumeDown className="text-2xl" />
+        <BsVolumeDown className="text-2xl text-gray-400 hover:text-white" />
       </button>
       <Slider
         className="w-[95px]"

@@ -13,7 +13,7 @@ const CurrentAlbum = () => {
         <div className="flex gap-2 text-white items-center">
           <picture>
             <img
-              className="h-16 w-16"
+              className="h-16 w-16 rounded-md"
               src={
                 currentMusic.album?.image
                   ? currentMusic.album?.image
