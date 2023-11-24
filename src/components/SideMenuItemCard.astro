@@ -6,22 +6,24 @@ const likedAlbums = await getLikedAlbums();
 
 <ul class="flex flex-col gap-2">
   {
-    likedAlbums.map((album) => (
-      <a>
-        <li class="flex items-center  p-2 gap-2 hover:cursor-pointer hover:bg-white/5">
-          <picture>
-            <img
-              class="w-16 h-16 rounded-md"
-              src={album.albumImage}
-              alt={album.album}
-            />
-          </picture>
-          <div class="flex flex-col text-white">
-            <p class="text-sm font-semibold">{album.album}</p>
-            <span class="text-xs text-gray-300">{album.artist}</span>
-          </div>
-        </li>
-      </a>
-    ))
+    likedAlbums.length > 0
+      ? likedAlbums.map((album) => (
+          <a>
+            <li class="flex items-center  p-2 gap-2 hover:cursor-pointer hover:bg-white/5">
+              <picture>
+                <img
+                  class="w-16 h-16 rounded-md"
+                  src={album.albumImage}
+                  alt={album.album}
+                />
+              </picture>
+              <div class="flex flex-col text-white">
+                <p class="text-sm font-semibold">{album.album}</p>
+                <span class="text-xs text-gray-300">{album.artist}</span>
+              </div>
+            </li>
+          </a>
+        ))
+      : null
   }
 </ul>
