@@ -40,7 +40,7 @@ const CardPlayButton = ({ id }) => {
   return (
     <button
       onClick={handleClick}
-      className="rounded-full bg-green-500 p-3 text-2xl text-black"
+      className="rounded-full bg-green-500 p-3 text-2xl text-black hover:scale-105 hover:bg-green-400"
     >
       {isPlayingAlbum ? <BsPauseFill /> : <BsPlayFill />}
     </button>

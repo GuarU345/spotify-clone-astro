@@ -20,6 +20,16 @@ export const getLikedAlbums = async () => {
   return likedAlbums;
 };
 
+export const checkUserLikesAlbum = async (albumId) => {
+  const res = await fetch(`${API_URL}/users/${userId}/albums/${albumId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const isLikedAlbum = await res.json();
+  return isLikedAlbum;
+};
+
 export const getAlbumById = async (albumId) => {
   const res = await fetch(`${API_URL}/albums/${albumId}/songs`, {
     headers: {

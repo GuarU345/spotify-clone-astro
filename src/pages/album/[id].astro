@@ -1,13 +1,15 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import SongsTable from "../../components/SongsTable.astro";
-import { getAlbumById } from "../../services/albums";
+import { checkUserLikesAlbum, getAlbumById } from "../../services/albums";
 import { getUserLikedSongsByAlbum } from "src/services/songs";
 import AlbumImage from "@components/react/AlbumImage";
+import CardPlayButton from "@components/react/CardPlayButton";
+import AlbumLike from "@components/react/AlbumLike";
+
 const { id } = Astro.params;
 const album = await getAlbumById(id);
 const likedSongIds = await getUserLikedSongsByAlbum(album.songs);
-
 const numberSongs = album.songs.length;
 ---
 
@@ -47,6 +49,11 @@ const numberSongs = album.songs.length;
         </div>
       </div>
     </header>
+
+    <div class="mt-10 px-6 flex gap-10 items-center">
+      <CardPlayButton client:visible id={album.id} />
+      <AlbumLike client:visible id={album.id} />
+    </div>
 
     <div class="relative z-10 px-6 pt-10"></div>
 
