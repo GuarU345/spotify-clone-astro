@@ -1,13 +1,39 @@
 ---
 import { getAlbums } from "../services/albums";
+import { getLikedSongsPlaylist } from "../services/playlists";
 import MainAlbumCard from "./MainAlbumCard.astro";
 const albums = await getAlbums();
+const playlist = await getLikedSongsPlaylist();
 ---
 
 <div id="playlist-container" class="relative">
-  <div class="relative z-10 px-6 pt-10">
+  <div class="flex flex-col gap-4 relative z-10 px-6 pt-10">
+    <div class="flex flex-col gap-10">
+      <p class="text-2xl">Buenos Dias</p>
+      <a>
+        <li
+          class="flex items-center p-2 gap-2 hover:cursor-pointer hover:bg-white/5"
+        >
+          <picture>
+            <img
+              src={playlist.image}
+              alt={playlist.name}
+              class="w-16 h-16 rounded-md"
+            />
+          </picture>
+          <div class="flex flex-col text-white">
+            <p class="text-sm font-semibold">{playlist.name}</p>
+            <span class="text-xs text-gray-300">{playlist.type}</span>
+          </div>
+        </li>
+      </a>
+    </div>
     <div class="flex flex-wrap mt-6 gap-4">
-      {albums.map((album) => <MainAlbumCard album={album} />)}
+      {
+        albums.length > 0
+          ? albums.map((album) => <MainAlbumCard album={album} />)
+          : null
+      }
     </div>
 
     <div
