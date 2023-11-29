@@ -1,0 +1,41 @@
+---
+const { likedSong, index } = Astro.props;
+console.log(likedSong);
+---
+
+<tr class="text-gray-300 text-sm hover:cursor-pointer hover:bg-white/10">
+  <td class="px-4 py-2 whitespace-no-wrap">
+    <p class="number-song text-base text-gray-50 opacity-70">
+      {index + 1}
+    </p>
+    <p
+      title={`Reproducir ${likedSong.song} de ${likedSong.artist}`}
+      class="play-icon text-base"
+    >
+    </p>
+  </td>
+  <td class="px-4 py-2 whitespace-no-wrap">
+    <div class="flex flex-row gap-2">
+      <img
+        src={likedSong.album.image}
+        width={50}
+        height={50}
+        alt={likedSong.album.name}
+      />
+      <div class="flex-col">
+        <strong class="text-white">{likedSong.name}</strong>
+        <p class="text-gray-400">{likedSong.artist}</p>
+      </div>
+    </div>
+  </td>
+  <td class="px-4 py-2 whitespace-no-wrap text-gray-50 opacity-70">
+    {likedSong.album.name}
+  </td>
+  <td>
+    <p
+      title="Eliminar de Tu biblioteca"
+      class="text-green-500 text-base hover:cursor-pointer"
+    >
+    </p>
+  </td>
+</tr>

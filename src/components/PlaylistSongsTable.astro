@@ -1,0 +1,31 @@
+---
+import { getLikedSongs } from "../services/songs";
+import LikedSongItem from "./LikedSongItem.astro";
+const likedSongs = await getLikedSongs();
+---
+
+<div class="flex flex-col gap-4">
+  <div
+    class="rounded-full w-[50px] h-[50px] bg-green-500 grid place-content-center"
+  >
+  </div>
+  <table class="min-w-full table-auto text-left divide-y divide-gray-100/50">
+    <thead>
+      <tr>
+        <th class="px-4 py-2">#</th>
+        <th class="px-4 py-2">Titulo</th>
+        <th class="px-4 py-2">Álbum</th>
+        <th class="px-4 py-2"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        likedSongs.length > 0
+          ? likedSongs.map((likedSong, index) => (
+              <LikedSongItem likedSong={likedSong} index={index} />
+            ))
+          : null
+      }
+    </tbody>
+  </table>
+</div>

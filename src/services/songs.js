@@ -41,3 +41,11 @@ export const getUserLikedSongsByAlbum = async (songIds) => {
   });
   return data;
 };
+
+export const getLikedSongs = async () => {
+  const resp = await fetch(`http://localhost:3000/api/users/${userId}/songs`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  const likedSongs = await resp.json();
+  return likedSongs;
+};

@@ -1,0 +1,44 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PlaylistSongsTable from "../../components/PlaylistSongsTable.astro";
+import { getLikedSongsPlaylist } from "../../services/playlists";
+const playlist = await getLikedSongsPlaylist();
+const { image, name, type } = playlist;
+---
+
+<Layout title="Canciones que te gustan">
+  <div
+    id="playlist-container"
+    class="relative flex flex-col h-full bg-gradient-to-b p-4 from-violet-600 via-zinc-950 overflow-x-hidden"
+  >
+    <header class="flex flex-row gap-8 px-6 mt-12">
+      <picture>
+        <img class="w-52 h-52" src={image} alt={name} />
+      </picture>
+      <div class="flex flex-col justify-between">
+        <h2 class="flex flex-1 items-end">{type}</h2>
+        <div>
+          <h1 class="text-5xl font-bold block text-white">
+            {name}
+            <span></span>
+          </h1>
+        </div>
+
+        <div class="flex-1 flex items-end"></div>
+      </div>
+    </header>
+
+    <div class="mt-10 px-6 flex gap-10 items-center"></div>
+
+    <div class="relative z-10 px-6 pt-10"></div>
+
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/80 -z-[1]"
+    >
+    </div>
+
+    <section class="p-6">
+      <PlaylistSongsTable />
+    </section>
+  </div>
+</Layout>
