@@ -1,18 +1,21 @@
 ---
 import Like from "./react/Like";
+import Play from "../icons/Play.astro";
 const { likedSong, index } = Astro.props;
-console.log(likedSong);
 ---
 
-<tr class="text-gray-300 text-sm hover:cursor-pointer hover:bg-white/10">
+<tr
+  class="index-row text-gray-300 text-sm hover:cursor-pointer hover:bg-white/10"
+>
   <td class="px-4 py-2 whitespace-no-wrap">
     <p class="number-song text-base text-gray-50 opacity-70">
       {index + 1}
     </p>
     <p
-      title={`Reproducir ${likedSong.song} de ${likedSong.artist}`}
+      title={`Reproducir ${likedSong.name} de ${likedSong.artist}`}
       class="play-icon text-base"
     >
+      <Play />
     </p>
   </td>
   <td class="px-4 py-2 whitespace-no-wrap">
@@ -44,3 +47,24 @@ console.log(likedSong);
     {likedSong.duration}
   </td>
 </tr>
+
+<style>
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  .index-row:hover {
+    & .number-song {
+      display: none;
+    }
+
+    & .play-icon {
+      display: block;
+      color: white;
+    }
+  }
+
+  .play-icon {
+    display: none;
+  }
+</style>

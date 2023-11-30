@@ -24,11 +24,14 @@ const Like = ({ liked, songId }) => {
 
   return (
     <>
-      <button
-        onClick={handleLike}
-        className={`${isLiked ? "text-green-500" : ""} text-lg`}
-      >
-        {isLiked ? <BsHeartFill /> : <BsHeart />}
+      <button onClick={handleLike} className="text-lg">
+        {isLiked ? (
+          <p className="text-green-500">
+            <BsHeartFill />
+          </p>
+        ) : (
+          <BsHeart />
+        )}
       </button>
     </>
   );

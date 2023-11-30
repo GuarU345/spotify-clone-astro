@@ -2,13 +2,15 @@
 import { getLikedSongs } from "../services/songs";
 import LikedSongItem from "./LikedSongItem.astro";
 import Time from "src/icons/Time.astro";
+import Play from "src/icons/Play.astro";
 const likedSongs = await getLikedSongs();
 ---
 
 <div class="flex flex-col gap-4">
   <div
-    class="rounded-full w-[50px] h-[50px] bg-green-500 grid place-content-center"
+    class="rounded-full w-[50px] h-[50px] bg-green-500 grid place-content-center hover:scale-105"
   >
+    <p class="text-black"><Play /></p>
   </div>
   <table class="min-w-full table-auto text-left divide-y divide-gray-100/50">
     <thead>
@@ -17,7 +19,7 @@ const likedSongs = await getLikedSongs();
         <th class="px-4 py-2">Titulo</th>
         <th class="px-4 py-2">Álbum</th>
         <th class="px-4 py-2"></th>
-        <th class="px-4 py-2 text-sm"><Time /></th>
+        <th class="px-4 py-2"><Time /></th>
       </tr>
     </thead>
     <tbody>
