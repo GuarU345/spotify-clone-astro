@@ -26,7 +26,7 @@ const Like = ({ liked, songId }) => {
     <>
       <button
         onClick={handleLike}
-        className={`${isLiked ? "text-green-500" : "d-none"} text-lg`}
+        className={`${isLiked ? "text-green-500" : ""} text-lg`}
       >
         {isLiked ? <BsHeartFill /> : <BsHeart />}
       </button>

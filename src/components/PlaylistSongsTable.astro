@@ -1,6 +1,7 @@
 ---
 import { getLikedSongs } from "../services/songs";
 import LikedSongItem from "./LikedSongItem.astro";
+import Time from "src/icons/Time.astro";
 const likedSongs = await getLikedSongs();
 ---
 
@@ -16,6 +17,7 @@ const likedSongs = await getLikedSongs();
         <th class="px-4 py-2">Titulo</th>
         <th class="px-4 py-2">Álbum</th>
         <th class="px-4 py-2"></th>
+        <th class="px-4 py-2 text-sm"><Time /></th>
       </tr>
     </thead>
     <tbody>
